@@ -1,0 +1,150 @@
+//Binary Search Tree
+
+class node
+{
+    public int data;
+    public node lChild;
+    public node rChild;
+
+    public node(int no)
+    {
+        this.data = no;
+        this.lChild = null;
+        this.rChild = null;
+    }
+
+}
+
+class BinarySerachTree
+{
+    private node first;
+    private int iCount;
+
+    public BinarySerachTree()
+    {
+        this.first = null;
+        this.iCount = 0;
+    }
+
+    public void Insert(int no)
+    {
+        node newn = null;
+        node temp = null;
+
+        newn = new node(no);
+        
+
+        if(first == null)
+        {
+            first = newn;
+            iCount++;
+        }
+        else
+        {
+            temp = first;
+
+            while(true)
+            {
+                if(no > temp.data)
+                {
+                    if(temp.rChild == null)
+                    {
+                        temp.rChild = newn;
+                        iCount++;
+                        break;
+                    }
+
+                    temp = temp.rChild;
+                }
+                else if(no < temp.data)
+                {
+                    if(temp.lChild == null)
+                    {
+                        temp.lChild = newn;
+                        iCount++;
+                        break;
+                    }
+
+                    temp = temp.lChild;
+                }
+                else if(no == temp.data)
+                {
+                    System.out.println("Unable to insert as element is duplicate");
+
+                    newn = null;
+                    System.gc();
+
+                    break;
+                }
+            }
+
+        }
+
+    }
+
+    // L D R
+    public void Inorder()
+    {
+        Inorder(first);
+
+    }
+
+    private void Inorder(node temp)
+    {
+        if(temp != null)
+        {
+            Inorder(temp.lChild);
+            System.out.print(temp.data+" ");
+            Inorder(temp.rChild);
+
+        }
+    }
+
+    public void Preorder()
+    {
+
+    }
+    
+    public void Postorder()
+    {
+
+    }
+
+    public int Count()
+    {
+        return iCount;
+    }
+
+    public boolean Serach(int no)
+    {
+        return false;
+
+    }
+
+    public int CountLeafNodes()
+    {
+        return 0;
+    }
+
+    public int CountParentNodes()
+    {
+        return 0;
+    }
+
+}
+class BST3
+{
+    public static void main(String A[])
+    {
+        BinarySerachTree bobj = new BinarySerachTree();
+
+        bobj.Insert(15);
+        bobj.Insert(11);
+        bobj.Insert(17);
+        bobj.Insert(19);
+        bobj.Insert(14);
+
+        bobj.Inorder();
+
+    }
+}
